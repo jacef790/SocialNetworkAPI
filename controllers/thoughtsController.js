@@ -10,7 +10,7 @@ module.exports = {
   },
   // Get single thought
   getSingleThought(req, res) {
-    Thoughts.findOne({ _id: req.params.thoughtsId })
+    Thoughts.findOne({ _id: req.params.thoughtId })
       .select('-__v')
       .then((thoughts) =>
         !thoughts
@@ -40,8 +40,8 @@ module.exports = {
   // Delete thought
   deleteThought(req, res) {
     Thoughts.findOneAndDelete({ _id: req.params.thoughtId })
-    .then((thought) =>
-    !thought
+    .then((thoughts) =>
+    !thoughts
       ? res.status(404).json({ message: 'No thought matching ID' })
       : res.json({message: `Thought deleted`})
   )
@@ -67,12 +67,12 @@ module.exports = {
       { $addToSet: { reactions: req.body } },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res
               .status(404)
               .json({ message: 'No thought matching ID' })
-          : res.json(thought)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -82,10 +82,10 @@ module.exports = {
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     )
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res.status(404).json({ message: 'No thought matching ID' })
-          : res.json(thought)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
