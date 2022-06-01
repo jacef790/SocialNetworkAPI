@@ -5,14 +5,21 @@ A backend for your social network. Allows user to post, update, and delete their
 
 ## TOC
 [How to Use](#how-to-use) <br>
-[Video](#videos) <br>
+[Video and Links](#videoandlinks) <br>
 [References](#references) <br>
 [Created By](#CreatedBy) <br>
 
 ## How to Use:
 Start server using node server.js, run routes in insomnia
 
-## Video
+## Video and Links
+link to repo: https://github.com/jacef790/SocialNetworkAPI<br>
+link to users: https://drive.google.com/file/d/1NbFRK7A6zzyyE4XFLExiHzocddGasIAN/view?usp=sharingbr<br>
+link to thoughts: https://drive.google.com/file/d/1Q7gwU7UBUjfEKvz4-CnetYVPc5vBULcD/view?usp=sharing<br>
+link to reactions: https://drive.google.com/file/d/1Ujpi8kjrRm__mhdyG7Tm7exWMof-NuKJ/view?usp=sharing<br>
+![gif](./img/users.gif)
+![gif](./img/thoughts.gif)<br>
+![gif](./img/reactions.gif)
 
 
 ## References:
