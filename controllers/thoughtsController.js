@@ -10,12 +10,12 @@ module.exports = {
   },
   // Get single thought
   getSingleThought(req, res) {
-    Thoughts.findOne({ _id: req.params.thoughtId })
+    Thoughts.findOne({ _id: req.params.thoughtsId })
       .select('-__v')
-      .then((thought) =>
-        !thought
+      .then((thoughts) =>
+        !thoughts
           ? res.status(404).json({ message: 'No thought matching ID' })
-          : res.json(thought)
+          : res.json(thoughts)
       )
       .catch((err) => res.status(500).json(err));
   },
