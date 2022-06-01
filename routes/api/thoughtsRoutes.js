@@ -24,7 +24,7 @@ const {
     .route('/:thoughtsId/reactions')
     .post(createReaction);
 
-    router.route('/:thoughtId/reactions/:reactionsID')
+    router.route('/:thoughtsId/reactions/:reactionsID')
     .delete(deleteReaction)
 
     module.exports = router;

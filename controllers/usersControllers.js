@@ -19,15 +19,15 @@ module.exports = {
   },
   // Get a single user
   getSingleUser(req, res) {
-    Users.findOne({ _id: req.params.userId })
+    Users.findOne({ _id: req.params.usersId })
       .populate({path: 'thoughts', select: '-__v'})
       .populate({path: 'friends', select: '-__v'})
       // .select('-__v')
-      .then((user) =>
-        !user
+      .then((users) =>
+        !users
           ? res.status(404).json({ message: 'No user matching ID' })
           : res.json({
-              user,
+              users,
             })
       )
       .catch((err) => {
@@ -38,14 +38,14 @@ module.exports = {
   // Create a new user
   createUser(req, res) {
     Users.create(req.body)
-      .then((user) => res.json(user))
+      .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
   // Delete a user
   deleteUser(req, res) {
     Users.findOneAndRemove({ _id: req.params.userId })
-      .then((user) =>
-        !user
+      .then((users) =>
+        !users
           ? res.status(404).json({ message: 'No user exists' })
           : res.json({ message: 'Successfully deleted' })
       )
@@ -62,10 +62,10 @@ module.exports = {
       { $set: req.body },
       { runValidators: true, new: true }
     )
-      .then((user) =>
-        !user
+      .then((users) =>
+        !users
           ? res.status(404).json({ message: 'No user matching id' })
-          : res.json(user)
+          : res.json(users)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -76,12 +76,12 @@ module.exports = {
       { $addToSet: { friends: { _id: req.body._id } } },
       { runValidators: true, new: true }
     )
-      .then((user) =>
-        !user
+      .then((users) =>
+        !users
           ? res
               .status(404)
               .json({ message: 'No user matching that ID' })
-          : res.json(user)
+          : res.json(users)
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -92,12 +92,12 @@ module.exports = {
         { $pull: { friends: req.params.friendId } },
         { runValidators: true, new: true }
       )
-        .then((user) =>
-          !user
+        .then((users) =>
+          !users
             ? res
                 .status(404)
                 .json({ message: 'No user matching that ID :(' })
-            : res.json(user)
+            : res.json(users)
         )
         .catch((err) => res.status(500).json(err));
     },
